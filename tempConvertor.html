@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            background: rgb(234, 234, 234);
+            padding: 10px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+            width: 400px;
+        }
+        h1{
+            text-align:center;
+            margin-bottom:10px;
+        }
+        input,select,button{
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        button{
+            background-color: #4c96af;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: #0cafba;
+        }
+        .result{
+            text-align: center;
+            margin-top: 10px;
+            margin-left:50px;
+            font-size: 18px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1><u>Temperature Convertor:-</u></h1>
+        <input type="text" id="tempInput" placeholder="Enter temperature">
+        <select id="unitSelect">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <button onclick="convertTemp()">Convert</button>
+        <div class="result" id="resultDisplay"></div>
+    </div>
+    <script>
+        function convertTemp() {
+            let tempValue = document.getElementById("tempInput").value.trim();
+            let unit = document.getElementById("unitSelect").value;
+            let resultArea = document.getElementById("resultDisplay");
+            if (tempValue === "" || isNaN(tempValue)) {
+                resultArea.textContent = "Please enter a valid number.";
+                resultArea.style.color = "red";
+                return;
+            }
+            tempValue=parseFloat(tempValue);
+            let convertedTemp;
+            if (unit==="celsius"){
+                convertedTemp=(tempValue*9/5)+32;
+                resultArea.textContent=`TEMP= ${convertedTemp.toFixed(2)}°F`;
+            } else{
+                convertedTemp=(tempValue-32)*5/9;
+                resultArea.textContent=`TEMP= ${convertedTemp.toFixed(2)}°C`;
+            }
+            resultArea.style.color="black";
+        }
+    </script>
+</body>
+</html>
